@@ -1,0 +1,48 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <RootNamespace>back_end</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="MediatR" Version="12.4.1" />
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="8.0.0" />
+    <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="8.0.7" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="9.0.1" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="9.0.1">
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+      <PrivateAssets>all</PrivateAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="9.0.1" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="9.0.1">
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+      <PrivateAssets>all</PrivateAssets>
+    </PackageReference>
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.4.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Application\Features\Authentication\Queries\" />
+    <Folder Include="Application\Features\Inventory\Commands\" />
+    <Folder Include="Application\Features\Inventory\Dtos\" />
+    <Folder Include="Application\Features\Inventory\Queries\" />
+    <Folder Include="Application\Features\Reports\Commands\" />
+    <Folder Include="Application\Features\Reports\Dtos\" />
+    <Folder Include="Application\Features\Reports\Queries\" />
+    <Folder Include="Application\Features\Orders\Commands\" />
+    <Folder Include="Application\Features\Orders\Dtos\" />
+    <Folder Include="Application\Features\Orders\Queries\" />
+    <Folder Include="Application\Features\Products\Commands\" />
+    <Folder Include="Application\Features\Products\Dtos\" />
+    <Folder Include="Application\Features\Products\Queries\" />
+    <Folder Include="Application\Features\Suppliers\Commands\" />
+    <Folder Include="Application\Features\Suppliers\Dtos\" />
+    <Folder Include="Application\Features\Suppliers\Queries\" />
+    <Folder Include="Application\Mappings\" />
+    <Folder Include="Application\Validators\" />
+  </ItemGroup>
+
+</Project>
