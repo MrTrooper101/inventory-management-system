@@ -56,8 +56,13 @@ namespace back_end.Infastructure.Repositories
                 {
                     var newUser = new User
                     {
+                        FirstName = registerDto.FirstName,
+                        MiddleName = registerDto.MiddleName,
+                        LastName = registerDto.LastName,
                         Email = registerDto.Email,
                         PhoneNumber = registerDto.PhoneNumber,
+                        CompanyName = registerDto.CompanyName,
+                        Address = registerDto.Address,
                         IsEmailVerified = false,
                         VerificationToken = verificationToken,
                         TokenExpiration = DateTime.UtcNow.AddHours(24)
@@ -68,7 +73,7 @@ namespace back_end.Infastructure.Repositories
 
                 await _dbContext.SaveChangesAsync();
 
-                var verificationLink = $"{_configuration["App:BaseUrl"]}/set-password?token={verificationToken}";
+                var verificationLink = $"{_configuration["App:BaseUrl"]}/password-setup?token={verificationToken}";
                 await _emailService.SendVerificationEmailAsync(registerDto.Email, verificationLink);
 
                 _logger.LogInformation("User registration completed for email: {Email}", registerDto.Email);
@@ -80,7 +85,7 @@ namespace back_end.Infastructure.Repositories
                 throw;
             }
         }
-        
+
         public async Task<bool> SetPasswordAsync(SetPasswordDto setPasswordDto)
         {
             try
@@ -135,7 +140,8 @@ namespace back_end.Infastructure.Repositories
                 }
 
                 _logger.LogInformation("User login successful: {Email}", user.Email);
-                return GenerateJwtToken(user);
+                var token = GenerateJwtToken(user);
+                return token;
             }
             catch (Exception ex)
             {

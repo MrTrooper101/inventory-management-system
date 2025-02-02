@@ -1,6 +1,4 @@
-﻿using back_end.Application.Interfaces;
-using back_end.Application.Features.Authentication.Dtos;
-using back_end.Application.Features.Authentication;
+﻿using back_end.Application.Features.Authentication.Dtos;
 using Microsoft.AspNetCore.Mvc;
 using MediatR;
 using back_end.Application.Features.Authentication.Commands;
@@ -19,9 +17,9 @@ namespace back_end.API.Controllers
         }
 
         [HttpPost("register")]
-        public async Task<IActionResult> Register(RegisterUserCommandRequest command)
+        public async Task<IActionResult> Register(RegisterDto registerDto)
         {
-            bool result = await _mediator.Send(command);
+            bool result = await _mediator.Send(new RegisterUserCommandRequest { RegisterRequest = registerDto });
             if (result)
                 return Ok("User registered successfully.");
             else
@@ -29,9 +27,9 @@ namespace back_end.API.Controllers
         }
 
         [HttpPost("password-setup")]
-        public async Task<IActionResult> PasswordSetup(PasswordSetupCommandRequest command)
+        public async Task<IActionResult> PasswordSetup(SetPasswordDto setPasswordDto)
         {
-            bool result = await _mediator.Send(command);
+            bool result = await _mediator.Send(new PasswordSetupCommandRequest { PasswordSetupRequest = setPasswordDto });
             if (result)
                 return Ok("Password set successfully.");
             else
@@ -39,13 +37,13 @@ namespace back_end.API.Controllers
         }
 
         [HttpPost("login")]
-        public async Task<IActionResult> Login(LoginUserCommandRequest command)
+        public async Task<IActionResult> Login(LoginDto loginDto)
         {
-            bool token = await _mediator.Send(command);
-            if (token)
-                return Ok(new { token });
-            else
+            string token = await _mediator.Send(new LoginUserCommandRequest { LoginRequest = loginDto });
+            if (token == "")
                 return BadRequest("User login failed.");
+            else
+                return Ok(new { token });
         }
     }
 

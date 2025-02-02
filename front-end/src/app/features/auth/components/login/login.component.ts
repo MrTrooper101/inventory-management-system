@@ -1,8 +1,10 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
+import { AuthenticationService } from '../../services/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -12,6 +14,9 @@ import { MatInputModule } from '@angular/material/input';
 })
 export class LoginComponent {
   loginForm: FormGroup;
+
+  authService = inject(AuthenticationService);
+  router = inject(Router);
 
   constructor(private fb: FormBuilder) {
     this.loginForm = this.fb.group({
@@ -24,7 +29,22 @@ export class LoginComponent {
 
   onSubmit(): void {
     if (this.loginForm.valid) {
-      console.log(this.loginForm.value); // Handle login logic here
+      const { email, password } = this.loginForm.value;
+
+      // Call login API using the AuthService
+      this.authService.login(email, password).subscribe(
+        (response) => {
+          if (response.token) {
+            this.authService.saveToken(response.token);  // Save token to local storage
+            // this.router.navigate(['/dashboard']);  // Navigate to the dashboard or other route
+          } else {
+            console.log('Login failed');
+          }
+        },
+        (error) => {
+          console.error('Login failed', error);
+        }
+      );
     } else {
       console.log('Form is invalid');
     }

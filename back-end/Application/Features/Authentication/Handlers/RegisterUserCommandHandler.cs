@@ -26,8 +26,13 @@ namespace back_end.Application.Features.Authentication.Handlers
 
             var newUser = new RegisterDto
             {
+                FirstName = request.RegisterRequest.FirstName,
+                MiddleName = request.RegisterRequest.MiddleName,
+                LastName = request.RegisterRequest.LastName,
                 Email = request.RegisterRequest.Email,
                 PhoneNumber = request.RegisterRequest.PhoneNumber,
+                CompanyName = request.RegisterRequest.CompanyName,
+                Address = request.RegisterRequest.Address,
             };
 
             await _userRepository.AddUserAsync(newUser);

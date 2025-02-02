@@ -5,7 +5,7 @@ using MediatR;
 
 namespace back_end.Application.Features.Authentication.Handlers
 {
-    public class LoginUserCommandHandler : IRequestHandler<LoginUserCommandRequest, bool>
+    public class LoginUserCommandHandler : IRequestHandler<LoginUserCommandRequest, string>
     {
         private readonly IUserRepository _userRepository;
 
@@ -14,7 +14,7 @@ namespace back_end.Application.Features.Authentication.Handlers
             _userRepository = repository;
         }
 
-        public async Task<bool> Handle(LoginUserCommandRequest request, CancellationToken cancellationToken)
+        public async Task<string> Handle(LoginUserCommandRequest request, CancellationToken cancellationToken)
         {
             var loginUser = new LoginDto
             {
@@ -22,8 +22,8 @@ namespace back_end.Application.Features.Authentication.Handlers
                 Password = request.LoginRequest.Password,
             };
 
-            await _userRepository.LoginUserAsync(loginUser);
-            return true;
+            var token = await _userRepository.LoginUserAsync(loginUser);
+            return token;
         }
     }
 }
