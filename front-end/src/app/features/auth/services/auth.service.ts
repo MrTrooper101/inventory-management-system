@@ -25,7 +25,7 @@ export class AuthenticationService {
     }
 
     saveToken(token: string): void {
-        localStorage.setItem('authToken', token); // You can also use sessionStorage
+        localStorage.setItem('authToken', token);
     }
 
     getToken(): string | null {
