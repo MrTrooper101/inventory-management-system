@@ -7,7 +7,7 @@ namespace back_end.API.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
-    public class AuthenticationController : ControllerBase
+    public class AuthenticationController : ControllerBase  
     {
         private readonly IMediator _mediator;
 
