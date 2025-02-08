@@ -1,0 +1,28 @@
+<mat-toolbar color="primary" class="top-navbar">
+    <div class="navbar-content">
+        <div class="logo-section">
+            <span>Mero Godaam</span>
+        </div>
+    </div>
+    <button mat-icon-button (click)="logout()">
+        <mat-icon>logout</mat-icon>
+    </button>
+</mat-toolbar>
+
+<mat-sidenav-container class="dashboard-container">
+    <mat-sidenav mode="side" opened class="sidenav">
+        <mat-nav-list>
+            <a mat-list-item routerLink="/dashboard" routerLinkActive="active-link">Dashboard</a>
+            <a mat-list-item routerLink="/products" routerLinkActive="active-link">Products</a>
+            <a mat-list-item routerLink="/dashboard/settings" routerLinkActive="active-link">Settings</a>
+            <a mat-list-item routerLink="/dashboard/help" routerLinkActive="active-link">Help</a>
+        </mat-nav-list>
+    </mat-sidenav>
+
+    <mat-sidenav-content>
+        <div class="content">
+            <!-- This is where the central content changes -->
+            <router-outlet></router-outlet>
+        </div>
+    </mat-sidenav-content>
+</mat-sidenav-container>

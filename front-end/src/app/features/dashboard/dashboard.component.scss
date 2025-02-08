@@ -1,0 +1,50 @@
+.dashboard-container {
+    display: flex;
+    height: 100vh;
+    /* Ensure the entire viewport height is covered */
+}
+
+.top-navbar {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    /* Ensure it stays above other elements */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 64px;
+    /* Standard Material toolbar height */
+    padding: 0 16px;
+    background-color: #3f51b5;
+    /* Primary color */
+    color: white;
+}
+
+.sidenav {
+    width: 250px;
+    /* Set a fixed width for the sidebar */
+    background-color: #f4f4f4;
+    /* Light background for sidebar */
+    border-right: 1px solid #ddd;
+    /* Add a subtle divider */
+}
+
+.mat-sidenav-content {
+    flex-grow: 1;
+    padding: 16px;
+    /* Add spacing for main content */
+    overflow: auto;
+    /* Enable scrolling for the content area */
+}
+
+.active-link {
+    font-weight: bold;
+    /* Highlight the active link */
+    color: #3f51b5;
+    /* Match the primary color */
+}
+
+.content {
+    margin-top: 16px;
+    /* Add spacing below the toolbar */
+}

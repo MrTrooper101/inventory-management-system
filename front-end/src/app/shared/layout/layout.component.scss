@@ -1,0 +1,55 @@
+.dashboard-container {
+    height: 100vh;
+    display: flex;
+}
+
+.top-navbar {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    /* Ensure it stays above other elements */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 64px;
+    /* Standard Material toolbar height */
+    padding: 0 16px;
+    background-color: #3f51b5;
+    /* Primary color */
+    color: white;
+}
+
+.mat-sidenav-content {
+    flex-grow: 1;
+    /* Add spacing for main content */
+    overflow: auto;
+    /* Enable scrolling for the content area */
+}
+
+.active-link {
+    font-weight: bold;
+    /* Highlight the active link */
+    color: #3f51b5;
+    /* Match the primary color */
+}
+
+.sidenav {
+    width: 250px;
+    background-color: #f4f4f4;
+}
+
+.content {
+    padding: 16px;
+    height: 100%;
+    background: #fafafa;
+}
+
+.top-navbar {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.mat-drawer-content {
+    width: 100%;
+}
