@@ -6,7 +6,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatTableModule } from '@angular/material/table';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
-import { AddProductComponent } from './add-product/add-product.component';
+import { AddProductComponent } from './product-category-list/add-product/add-product.component';
 
 @Component({
   selector: 'app-products',

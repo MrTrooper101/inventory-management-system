@@ -1,0 +1,18 @@
+<div class="category-container">
+    <h6>Product Category</h6>
+    <button mat-flat-button (click)="openAddProductCategoryDialog()">
+        <mat-icon>add</mat-icon>
+        Add</button>
+    <form [formGroup]="searchForm">
+        <mat-form-field appearance="fill" class="full-width">
+            <mat-label>Search Categories</mat-label>
+            <input matInput formControlName="search" placeholder="Search..." />
+        </mat-form-field>
+    </form>
+
+    <mat-list>
+        <mat-list-item *ngFor="let category of filteredCategories()" (click)="selectCategory(category)">
+            {{ category.name }}
+        </mat-list-item>
+    </mat-list>
+</div>

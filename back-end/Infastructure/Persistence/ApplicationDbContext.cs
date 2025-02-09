@@ -8,6 +8,7 @@ namespace back_end.Infastructure.Persistence
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options) { }
 
         public DbSet<User> Users { get; set; }
+        public DbSet<Category> Categories{ get; set; }
     }
 
 }
