@@ -1,6 +1,5 @@
-﻿using back_end.Application.Features.Categories.Commands;
-using back_end.Application.Features.Categories.Dtos;
-using back_end.Application.Features.Categories.Queries;
+﻿using back_end.Application.Features.Products.Requests.Commands;
+using back_end.Application.Features.Products.Dtos;
 using back_end.Application.Features.Products.Requests.Queries;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
@@ -32,32 +31,32 @@ namespace back_end.API.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> AddCategory(AddCategoryDto addCategoryDto)
+        public async Task<IActionResult> AddProduct(ProductDto addProductDto)
         {
-            bool result = await _mediator.Send(new AddCategoryCommand { AddCategoryRequest = addCategoryDto });
-            if (result) return Ok(new { message = "Category added successfully." });
-            return BadRequest(new { message = "Failed to add category." });
+            bool result = await _mediator.Send(new AddProductCommandRequest { AddProduct = addProductDto });
+            if (result) return Ok(new { message = "Product added successfully." });
+            return BadRequest(new { message = "Failed to add product." });
         }
 
         [HttpPut]
-        public async Task<IActionResult> UpdateCategory(UpdateCategoryDto updateCategoryDto)
+        public async Task<IActionResult> UpdateProduct(UpdateProductDto updateProductDto)
         {
-            bool result = await _mediator.Send(new UpdateCategoryCommand { UpdateCategoryRequest = updateCategoryDto });
+            bool result = await _mediator.Send(new UpdateProductCommand { UpdateProductRequest = updateProductDto });
             if (result)
-                return Ok(new { message = "Category updated successfully." });
+                return Ok(new { message = "Product updated successfully." });
             else
                 return BadRequest(new
                 {
-                    message = "Category update failed."
+                    message = "Product update failed."
                 });
         }
 
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteCategory(int id)
+        public async Task<IActionResult> DeleteProduct(int id)
         {
-            var deleteCategoryDto = new DeleteCategoryDto { Id = id };
+            var deleteProductDto = new DeleteProductDto { Id = id };
 
-            var result = await _mediator.Send(new DeleteCategoryCommand { DeleteCategoryRequest = deleteCategoryDto });
+            var result = await _mediator.Send(new DeleteProductCommand { DeleteProductRequest = deleteProductDto });
 
             if (result)
                 return Ok(new

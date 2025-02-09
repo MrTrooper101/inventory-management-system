@@ -6,7 +6,7 @@ namespace back_end.Domain.Entities
     public class Product
     {
         [Key]
-        public int ProductId { get; set; } // Primary Key
+        public int Id { get; set; } // Primary Key
 
         [Required]
         [MaxLength(255)]
@@ -26,5 +26,7 @@ namespace back_end.Domain.Entities
 
         [Required]
         public bool IsActive { get; set; } = true;
+        public DateTime? CreatedAt { get; set; }
+        public DateTime? UpdatedAt { get; set; }
     }
 }
