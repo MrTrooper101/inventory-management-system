@@ -3,8 +3,8 @@ using MediatR;
 
 namespace back_end.Application.Features.Products.Requests.Commands
 {
-    public class AddProductCommandRequest : IRequest<bool>
+    public class UpdateProductCommandRequest : IRequest<bool>
     {
-        public AddProductDto AddProduct { get; set; }
+        public ProductDto UpdateProduct { get; set; }
     }
 }

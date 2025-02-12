@@ -31,17 +31,17 @@ namespace back_end.API.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> AddProduct(ProductDto addProductDto)
+        public async Task<IActionResult> AddProduct([FromBody] AddProductDto productDto)
         {
-            bool result = await _mediator.Send(new AddProductCommandRequest { AddProduct = addProductDto });
+            bool result = await _mediator.Send(new AddProductCommandRequest { AddProduct = productDto });
             if (result) return Ok(new { message = "Product added successfully." });
             return BadRequest(new { message = "Failed to add product." });
         }
 
         [HttpPut]
-        public async Task<IActionResult> UpdateProduct(UpdateProductDto updateProductDto)
+        public async Task<IActionResult> UpdateProduct(ProductDto productDto)
         {
-            bool result = await _mediator.Send(new UpdateProductCommand { UpdateProductRequest = updateProductDto });
+            bool result = await _mediator.Send(new UpdateProductCommandRequest { UpdateProduct = productDto });
             if (result)
                 return Ok(new { message = "Product updated successfully." });
             else
@@ -54,19 +54,17 @@ namespace back_end.API.Controllers
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteProduct(int id)
         {
-            var deleteProductDto = new DeleteProductDto { Id = id };
-
-            var result = await _mediator.Send(new DeleteProductCommand { DeleteProductRequest = deleteProductDto });
+            var result = await _mediator.Send(new DeleteProductCommandRequest(id));
 
             if (result)
                 return Ok(new
                 {
-                    message = "User registered successfully."
+                    message = "Product deleted successfully."
                 });
             else
                 return BadRequest(new
                 {
-                    message = "User registration failed."
+                    message = "Failed to delete product."
                 });
         }
     }

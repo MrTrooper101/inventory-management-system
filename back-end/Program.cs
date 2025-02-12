@@ -14,11 +14,12 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
 
 builder.Services.AddScoped<IUserRepository, UserRepository>();
 builder.Services.AddScoped<ICategoryRepository, CategoryRepository>();
+builder.Services.AddScoped<IProductRepository, ProductRepository>();
 builder.Services.AddScoped<EmailService>();
 
 builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(typeof(Program).Assembly));
 
-builder.Services.AddControllers();
+builder.Services.AddControllers().AddNewtonsoftJson();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
@@ -59,19 +60,10 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
-
-app.UseCors("AllowFrontend"); // Ensure this is above UseRouting and UseAuthorization
-
 app.UseRouting();
+app.UseCors("AllowFrontend"); // Ensure this is above UseRouting and UseAuthorization
 app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();
 app.Run();
-
-//app.UseCors("AllowFrontend");
-//app.UseRouting();
-//app.UseAuthorization();
-//app.UseHttpsRedirection();
-//app.MapControllers();
-//app.Run();

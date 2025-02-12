@@ -6,10 +6,11 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { CategoryService } from '../../../../services/category.service';
 import { ToastrService } from 'ngx-toastr';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-add-category',
-  imports: [ReactiveFormsModule, MatFormFieldModule, MatInputModule, MatButtonModule],
+  imports: [ReactiveFormsModule, MatFormFieldModule, MatInputModule, MatButtonModule, CommonModule],
   templateUrl: './add-category.component.html',
   styleUrl: './add-category.component.scss'
 })

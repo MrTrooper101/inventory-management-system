@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -7,6 +7,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatTableModule } from '@angular/material/table';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { AddProductComponent } from './product-category-list/add-product/add-product.component';
+import { ProductService } from '../services/product.service';
 
 @Component({
   selector: 'app-products',
@@ -22,12 +23,22 @@ import { AddProductComponent } from './product-category-list/add-product/add-pro
   styleUrl: './products.component.scss'
 })
 export class ProductsComponent {
-  products = [
-    { name: 'Product 1', price: 100, description: 'Description for Product 1' },
-    { name: 'Product 2', price: 200, description: 'Description for Product 2' },
-  ];
+  products :any[] = [];
 
+  private productService = inject(ProductService);
   constructor(private dialog: MatDialog) { }
+
+  ngOnInit(): void {
+    this.getAllProducts();
+  }
+
+  getAllProducts() {
+    this.productService.getAllProductList().subscribe((response) => {
+      if (response) {
+        this.products = response;
+      }
+    });
+  }
 
   openAddProductDialog(): void {
     const dialogRef = this.dialog.open(AddProductComponent, {
